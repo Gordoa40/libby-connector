@@ -1,6 +1,9 @@
 // This is run in the backgrond
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+console.log("background script running");
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Got Request!");
   switch (message.type) {
     case 'FROM_AG_PAGE':
       searchOverdrive({
@@ -100,7 +103,7 @@ function searchOverdrive(requestInfo) {
           libraryStr = "<br/>" + libraryShortName;
         }
 
-        const searchUrls = createSearchUrls(library, libraryShortName, requestInfo, showFormat);
+        const searchUrls = createSearchUrls(library, "austinlibrary", requestInfo, showFormat);
 
         const response = await fetch(searchUrls.overdriveAPI);
         const data = await response.json();

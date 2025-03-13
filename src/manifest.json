@@ -1,0 +1,54 @@
+{
+    "name": "Available Reads",
+    "short_name": "AvailableReads",
+    "version": "5.2.0",
+    "manifest_version": 2,
+    "description": "Displays availability of ebooks and audiobooks from your local library on GoodReads pages.",
+    "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "options_ui": {
+      "page": "options/index.html"
+    },
+    "permissions": [
+      "storage", 
+      "activeTab"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://www.goodreads.com/*"
+        ],
+        "js": [
+          "goodreads_inject.js"
+        ]
+      },
+      {
+        "matches": [
+          "https://www.amazon.com/*"
+        ],
+        "js": [
+          "amazon_inject.js"
+        ]
+      },
+      {
+        "matches": [
+          "https://www.overdrive.com/libraries"
+        ],
+        "js": [
+          "overdrive_inject.js"
+        ]
+      }
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "test@test.com"
+      }
+    }
+  }
